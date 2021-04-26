@@ -8,14 +8,16 @@
       <v-spacer></v-spacer>
 
       <v-btn icon title="contact Paul">
-        <v-icon>mdi-email</v-icon>
+        <a href="mailto:paul@paulpatena.com" style="text-decoration: none; color: white">
+            <v-icon>mdi-email</v-icon>
+          </a>
       </v-btn>
 
-      <v-btn icon title="Paul's LinkedIn account">
+      <v-btn icon title="Paul's LinkedIn account" href="https://www.linkedin.com/in/paulpatena/" target="_blank">
         <v-icon>mdi-linkedin</v-icon>
       </v-btn>
 
-      <v-btn icon title="Paul's Github account">
+      <v-btn icon title="Paul's Github account" href="https://github.com/PaulPatena/personal_site_2021" target="_blank">
         <v-icon>mdi-github</v-icon>
       </v-btn>
     </v-app-bar>
@@ -105,6 +107,14 @@ export default {
 
   methods: {
     ...mapMutations(['invertDarkMode'])
+  },
+
+  mounted() {
+    for (let i=0; i < this.items.length; i++) {
+      if (this.items[i].routeName === this.$route.name) {
+        this.selectedItem = i;
+      }
+    }
   }
 };
 </script>
