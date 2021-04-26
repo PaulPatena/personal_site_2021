@@ -1,7 +1,7 @@
 <template>
   <v-container fluid>
     <v-row justify="center">
-      <v-col cols=9>
+      <v-col cols=12 md=9>
           <v-carousel
             cycle
             hide-delimiter-background
@@ -73,7 +73,13 @@ export default {
 
   computed: {
     imgHeight() {
-      return `${this.$vuetify.breakpoint.height * 0.90}px`;
+      let factor = 0.9;
+      if (this.$vuetify.breakpoint.height > 2*this.$vuetify.breakpoint.width) {
+        factor = 0.35; // portrait mobile devices
+      } else if (this.$vuetify.breakpoint.height > this.$vuetify.breakpoint.width) {
+        factor = 0.5; // tablet or squarish devices
+      }
+      return `${this.$vuetify.breakpoint.height * factor}px`;
     },
     ...mapGetters(['getDarkMode']),
   },
