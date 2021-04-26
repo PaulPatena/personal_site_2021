@@ -1,10 +1,12 @@
 <template>
   <v-app>
     <v-app-bar app clipped-left dense color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img src="@/assets/pp-outline.png" transition="scale-transition" width="32" />
-      </div>
+      <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
 
+      <div class="d-flex align-center">
+        <v-img src="@/assets/pp-outline.png" transition="scale-transition" width="32" @click="$router.push({name: `Home`})" style="cursor: pointer;"/>
+      </div>
+      
       <v-spacer></v-spacer>
 
       <v-btn icon title="contact Paul">
@@ -22,7 +24,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer :dark="getDarkMode" app clipped :mini-variant="mini" permanent
+    <v-navigation-drawer :dark="getDarkMode" app clipped v-model="drawer" :mini-variant="mini"
       :class="{'darkBackground': getDarkMode, 'lightBackground': !getDarkMode}"
     >
       <v-list-item class="px-2">
@@ -89,6 +91,7 @@ export default {
   components: {},
 
   data: () => ({
+    drawer: true,
     selectedItem: 0,
     darkMode: false,
     accentColor: "orange darken-2",
