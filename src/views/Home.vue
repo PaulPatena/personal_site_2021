@@ -13,13 +13,20 @@
           <v-container fluid>
             <v-row>
               <v-col cols="4">
-                <v-img contain src="https://d2f64i0vuuj86y.cloudfront.net/public_images/aws-certified-solutions-architect-associate.png"></v-img>
+                <a href="https://www.credly.com/badges/0c10a8e5-d58d-4c8b-93b5-fd0e9203f429" target="_blank">
+                  <v-img contain src="https://d2f64i0vuuj86y.cloudfront.net/public_images/aws-certified-solutions-architect-associate.png"></v-img>
+                </a>
               </v-col>
               <v-col cols="4">
-                <v-img contain src="https://d2f64i0vuuj86y.cloudfront.net/public_images/aws-certified-developer-associate.png"></v-img>
+                <a href="https://www.credly.com/badges/a83a06e7-a2d1-44ca-864e-e06a77b7eb04" target="_blank">
+                  <v-img contain src="https://d2f64i0vuuj86y.cloudfront.net/public_images/aws-certified-developer-associate.png"></v-img>
+                </a>
+
               </v-col>
               <v-col cols="4">
-                <v-img contain src="https://d2f64i0vuuj86y.cloudfront.net/public_images/seal-csm.png"></v-img>
+                <a href="https://d2f64i0vuuj86y.cloudfront.net/public_images/certs/scrum.jpg" target="_blank">
+                  <v-img contain src="https://d2f64i0vuuj86y.cloudfront.net/public_images/seal-csm.png"></v-img>
+                </a>
               </v-col>
             </v-row>
           </v-container>
