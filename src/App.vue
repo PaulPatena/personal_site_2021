@@ -20,7 +20,7 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer :dark="darkMode" app clipped v-model="drawer" :mini-variant="mini" permanent
+    <v-navigation-drawer :dark="darkMode" app clipped :mini-variant="mini" permanent
       :class="{'darkBackground': darkMode, 'lightBackground': !darkMode}"
     >
       <v-list-item class="px-2">
@@ -55,15 +55,15 @@
           </v-list-item-group>
         </v-list>
       
-
-      <section v-if="!mini">
-        <v-divider></v-divider>
-        <v-list-item dense>
-          <v-list-item-content class="pa-0 px-2">
-            <v-switch v-model="darkMode" :label="darkMode ? 'Dark Mode': 'Light Mode'" hide-details dense />
-          </v-list-item-content>
-        </v-list-item>
-      </section>
+      <v-divider></v-divider>
+      <v-list-item nav dense @click="darkMode = !darkMode">
+        <v-list-item-icon>
+          <v-icon>mdi-brightness-6</v-icon>  
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{darkMode ? 'Dark Mode': 'Light Mode'}}</v-list-item-title>
+        </v-list-item-content>
+      </v-list-item>
 
     </v-navigation-drawer>
 
@@ -92,7 +92,7 @@ export default {
     darkMode: false,
     accentColor: "orange darken-2",
     items: [
-      { title: 'About Me', icon: 'mdi-account', routeName: "Home" },
+      { title: 'Paul Patena', icon: 'mdi-account', routeName: "Home" },
       { title: 'Home DIY', icon: 'mdi-hammer-screwdriver', routeName: "Diy" },
       { title: 'Home Proj Videos', icon: 'mdi-play-circle', routeName: "Videos" },
       { title: 'Home Proj Photos', icon: 'mdi-image', routeName: "Gallery" },
@@ -116,7 +116,7 @@ export default {
 }
 
 .lightBackground {
-  background-color: #D3E6FF;
+  background-color: #D3E6FF !important;
   // color: #F4F4F4;
 }
 
