@@ -20,8 +20,8 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer :dark="darkMode" app clipped :mini-variant="mini" permanent
-      :class="{'darkBackground': darkMode, 'lightBackground': !darkMode}"
+    <v-navigation-drawer :dark="getDarkMode" app clipped :mini-variant="mini" permanent
+      :class="{'darkBackground': getDarkMode, 'lightBackground': !getDarkMode}"
     >
       <v-list-item class="px-2">
         <v-btn icon :color="accentColor" @click.stop="mini = !mini">
@@ -56,31 +56,29 @@
         </v-list>
       
       <v-divider></v-divider>
-      <v-list-item nav dense @click="darkMode = !darkMode">
+      <v-list-item nav dense @click="invertDarkMode()">
         <v-list-item-icon>
           <v-icon>mdi-brightness-6</v-icon>  
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>{{darkMode ? 'Dark Mode': 'Light Mode'}}</v-list-item-title>
+          <v-list-item-title>{{getDarkMode ? 'Dark Mode': 'Light Mode'}}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
 
     </v-navigation-drawer>
 
-    <v-main :class="{'darkBackground': darkMode, 'lightBackground': !darkMode}">
-      <v-container fluid>
-        <transition name="fade-transition" mode="out-in">
-          <keep-alive>
-            <router-view/>
-          </keep-alive>
-        </transition>
-      </v-container>
-
+    <v-main :class="{'darkBackground': getDarkMode, 'lightBackground': !getDarkMode}">
+      <transition name="fade-transition" mode="out-in">
+        <keep-alive>
+          <router-view/>
+        </keep-alive>
+      </transition>
     </v-main>
   </v-app>
 </template>
 
 <script>
+import {mapMutations, mapGetters} from 'vuex';
 
 export default {
   name: "App",
@@ -101,15 +99,17 @@ export default {
     mini: true,
   }),
 
-  methods: {}
+  computed: {
+    ...mapGetters(['getDarkMode']),
+  },
+
+  methods: {
+    ...mapMutations(['invertDarkMode'])
+  }
 };
 </script>
 
-<style lang="scss" scoped>
-.clickable {
-  cursor: pointer;
-}
-
+<style lang="scss">
 .darkBackground {
   background-color: #363636;
   color: #F4F4F4;
@@ -117,10 +117,6 @@ export default {
 
 .lightBackground {
   background-color: #D3E6FF !important;
-  // color: #F4F4F4;
 }
 
-.maxHeight {
-  min-height: 50%;
-}
 </style>
