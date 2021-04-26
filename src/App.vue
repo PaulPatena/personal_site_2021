@@ -7,7 +7,7 @@
 
       <v-spacer></v-spacer>
 
-      <v-btn icon title="send Paul an email">
+      <v-btn icon title="contact Paul">
         <v-icon>mdi-email</v-icon>
       </v-btn>
 
@@ -20,9 +20,11 @@
       </v-btn>
     </v-app-bar>
 
-    <v-navigation-drawer :dark="darkMode" app clipped v-model="drawer" :mini-variant.sync="mini" permanent>
+    <v-navigation-drawer :dark="darkMode" app clipped v-model="drawer" :mini-variant="mini" permanent
+      :class="{'darkBackground': darkMode, 'lightBackground': !darkMode}"
+    >
       <v-list-item class="px-2">
-        <v-btn icon color="primary" @click.stop="mini = !mini">
+        <v-btn icon :color="accentColor" @click.stop="mini = !mini">
           <v-icon v-if="mini" title="expand drawer">mdi-chevron-right</v-icon>
           <v-icon v-else title="minimize drawer">mdi-chevron-left</v-icon>
         </v-btn>
@@ -30,31 +32,29 @@
 
       <v-divider></v-divider>
 
-      <v-list dense>
-        <v-list-group v-for="entry in navigationEntries" :key="entry.key" v-model="entry.active" :prepend-icon="entry.icon" no-action>
-          <template v-slot:activator>
-            <v-list-item-content>
-              <v-list-item-title>{{entry.text}}</v-list-item-title>
-            </v-list-item-content>
-          </template>
+        <v-list nav dense>
+          <v-list-item-group
+            v-model="selectedItem"
+            color="warning">
+            <v-list-item
+              v-for="item in items"
+              :key="item.title"
+              link
+              @click="$router.push({name: item.routeName})"
+            >
+              <v-list-item-icon>
+                <v-icon :title="item.title">
+                  {{ item.icon }}
+                </v-icon>
+              </v-list-item-icon>
 
-          <v-list-item v-for="childPage in entry.children" :key="childPage.key">
-            <v-list-item-content>
-              <v-list-item-title>{{childPage.text}}</v-list-item-title>
-            </v-list-item-content>
-          </v-list-item>
-
-        </v-list-group>
-        <!-- <v-list-item v-for="entry in navigationEntries" :key="entry.key" link>
-          <v-list-item-icon :title="entry.text">
-            <v-icon>{{ entry.icon }}</v-icon>
-          </v-list-item-icon>
-
-          <v-list-item-content>
-            <v-list-item-title>{{ entry.text }}</v-list-item-title>
-          </v-list-item-content>
-        </v-list-item> -->
-      </v-list>
+              <v-list-item-content>
+                <v-list-item-title>{{ item.title }}</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+          </v-list-item-group>
+        </v-list>
+      
 
       <section v-if="!mini">
         <v-divider></v-divider>
@@ -67,21 +67,13 @@
 
     </v-navigation-drawer>
 
-
-    <v-main :class="{'darkBackground': darkMode}">
-      <!-- <HelloWorld /> -->
+    <v-main :class="{'darkBackground': darkMode, 'lightBackground': !darkMode}">
       <v-container fluid>
-        <v-row>
-          <v-col cols=12>
-            <v-card class="pa-4" :dark="darkMode">
-              <h1>School Manager goes to Vue and Google MD</h1>
-              <h2>by Paul</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas iaculis vitae leo consequat suscipit. Nam auctor tellus vestibulum dui vehicula tempor. Nunc ipsum ligula, iaculis eget egestas nec, ultrices ut quam. Donec vehicula cursus lectus, nec interdum risus feugiat non. Nam in nulla eleifend, pulvinar lacus eu, blandit odio. In auctor sem et elit elementum, ac mattis nulla interdum. Suspendisse at lectus at arcu ullamcorper fermentum. Donec sodales ornare eros eget accumsan. Quisque mattis velit ut volutpat porta. Curabitur vel orci at elit ultrices bibendum. In dapibus nulla sed lectus rutrum imperdiet et id nisi. Nam feugiat lacus quis erat iaculis, eget facilisis eros congue.</p>
-              <p>Proin at nunc non mi scelerisque suscipit. Nullam ante ex, vehicula sit amet vulputate sit amet, tincidunt in nibh. Nullam consectetur, nunc eget accumsan convallis, augue est sollicitudin odio, a pulvinar risus sapien nec sem. Praesent bibendum, nunc nec sodales porta, justo nisl vulputate sem, nec dictum lacus ipsum eget ex. Aenean venenatis commodo enim et tristique. Donec lobortis eros neque, et porttitor nulla molestie eget. Donec vitae venenatis quam. Mauris commodo blandit cursus. Quisque nisl eros, rhoncus et dictum et, tincidunt eget diam.</p>
-              <p>Suspendisse potenti. Aenean eget mauris hendrerit, ultrices justo quis, malesuada est. Mauris nulla neque, feugiat eget lectus et, tristique rutrum lorem. Duis eget scelerisque nunc, non faucibus massa. Sed at suscipit nisi, vel venenatis nibh. Curabitur tincidunt placerat arcu nec auctor. Vivamus feugiat justo quam, ac venenatis felis bibendum vitae. Vestibulum venenatis lacus nec leo lobortis malesuada. Nunc in orci bibendum, gravida nisi vel, iaculis lacus. Praesent dignissim eu risus id lobortis. Nulla imperdiet venenatis fringilla. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas convallis arcu vitae ex tincidunt porta. Curabitur varius ante eget nisl cursus, nec pellentesque lorem pellentesque. Quisque eleifend auctor metus, eu placerat mauris.</p>
-            </v-card>
-          </v-col>
-        </v-row>
+        <transition name="fade-transition" mode="out-in">
+          <keep-alive>
+            <router-view/>
+          </keep-alive>
+        </transition>
       </v-container>
 
     </v-main>
@@ -89,58 +81,27 @@
 </template>
 
 <script>
-// import HelloWorld from "./components/HelloWorld";
 
 export default {
   name: "App",
 
-  components: {
-    // HelloWorld,
-  },
+  components: {},
 
   data: () => ({
+    selectedItem: 0,
     darkMode: false,
-    dropDownChoices: ["My Account", "Sign Out"],
-    navigationEntries: [
-      {
-        text: "Statistics",
-        icon: "mdi-chart-bar",
-        key: "Statistics-Route",
-        active: true,
-        children: [
-          { text: "Overview", key: "Statistics-Route-Overview" },
-          { text: "Apps and Websites", key: "Statistics-Route-AppsAndWebsites" },
-          { text: "Users", key: "Statistics-Route-Users" },
-        ],
-      },
-      {
-        text: "Cyber Safety",
-        icon: "mdi-shield-half-full",
-        key: "CyberSafety-Route",
-        active: false,
-        children: [
-          {text: "Overview", key: "CyberSafety-Route-Overview"},
-          {text: "Activity and Compliance", key: "CyberSafety-Route-ActivityAndCompliance"},
-          {text: "Red Flags", key: "CyberSafety-Route-RedFlags"},
-          {text: "Searches", key: "CyberSafety-Route-Searches"},
-          {text: "Videos", key: "CyberSafety-Route-Videos"},
-          {text: "Mobile Apps", key: "CyberSafety-Route-MobileApps"},
-          {text: "Videos", key: "CyberSafety-Route-Videos"},
-        ]
-      },
-      { text: "Filtering", icon: "mdi-filter", key: "main-routes-3", active: false },
-      { text: "Edge Networking", icon: "mdi-earth", key: "main-routes-4", active: false },
-      { text: "Configuration", icon: "mdi-cog", key: "main-routes-5", active: false },
-      { text: "Debugging", icon: "mdi-bug", key: "main-routes-6", active: false },
-    ],
-    drawer: true,
+    accentColor: "orange darken-2",
     items: [
-      { title: "Home", icon: "mdi-home-city" },
-      { title: "My Account", icon: "mdi-account" },
-      { title: "Users", icon: "mdi-account-group-outline" },
+      { title: 'About Me', icon: 'mdi-account', routeName: "Home" },
+      { title: 'Home DIY', icon: 'mdi-hammer-screwdriver', routeName: "Diy" },
+      { title: 'Home Proj Videos', icon: 'mdi-play-circle', routeName: "Videos" },
+      { title: 'Home Proj Photos', icon: 'mdi-image', routeName: "Gallery" },
+      { title: 'My Certificates', icon: 'mdi-medal', routeName: "MyCerts" },
     ],
     mini: true,
   }),
+
+  methods: {}
 };
 </script>
 
@@ -152,6 +113,11 @@ export default {
 .darkBackground {
   background-color: #363636;
   color: #F4F4F4;
+}
+
+.lightBackground {
+  background-color: #D3E6FF;
+  // color: #F4F4F4;
 }
 
 .maxHeight {
