@@ -41,11 +41,12 @@
             <v-list-item
               v-for="item in items"
               :key="item.title"
+              :title="item.title"
               link
               @click="$router.push({name: item.routeName})"
             >
               <v-list-item-icon>
-                <v-icon :title="item.title">
+                <v-icon>
                   {{ item.icon }}
                 </v-icon>
               </v-list-item-icon>
@@ -58,7 +59,7 @@
         </v-list>
       
       <v-divider></v-divider>
-      <v-list-item nav dense @click="invertDarkMode()">
+      <v-list-item nav dense @click="invertDarkMode()" title="switch between dark & light theme">
         <v-list-item-icon>
           <v-icon>mdi-brightness-6</v-icon>  
         </v-list-item-icon>

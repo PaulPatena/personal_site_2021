@@ -40,7 +40,6 @@ export default {
 
   data: () => ({
     baseUrl: "https://d2f64i0vuuj86y.cloudfront.net/public_images/diy",
-    mini: true,
   }),
 
   computed: {
