@@ -101,7 +101,7 @@ export default {
       { title: 'Home Proj Videos', icon: 'mdi-play-circle', routeName: "Videos" },
       { title: 'Home Proj Photos', icon: 'mdi-image', routeName: "Gallery" },
       { title: 'Home DIY', icon: 'mdi-hammer-screwdriver', routeName: "Diy" },
-      { title: 'Atlassian', icon: 'mdi-bug', routeName: "atlassian" },
+      { title: 'Atlassian', icon: 'mdi-bug', routeName: "Atlassian" },
     ],
     mini: true,
   }),

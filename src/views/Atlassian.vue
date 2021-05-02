@@ -1,17 +1,16 @@
 <template>
-  <fragment>
+  <v-container fluid>
     <p class="pop--error">Hello World</p>
     {{status}}
-  </fragment>
+  </v-container>
 </template>
 
 <script>
-import { Fragment } from 'vue-fragment'
 // import {mapGetters, mapMutations, mapActions} from 'vuex';
 // import HelloWorld from "../components/HelloWorld.vue"
 
 export default {
-  name: 'FIXME',
+  name: 'Atlassian',
   data: () => ({
     status: "loading"
   }),
@@ -28,7 +27,6 @@ export default {
     this.status = "successfully loaded";
   },
   components: {
-    Fragment
   }
 
 }

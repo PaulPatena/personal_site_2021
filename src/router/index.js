@@ -5,6 +5,7 @@ import Diy from '../views/Diy.vue'
 import Videos from '../views/Videos.vue'
 import Gallery from '../views/Gallery.vue'
 import MyCerts from '../views/MyCerts.vue'
+import Atlassian from '../views/Atlassian.vue'
 
 Vue.use(VueRouter)
 
@@ -36,8 +37,8 @@ const routes = [
   },
   {
     path: '/atlassian',
-    name: 'atlassian',
-    component: () => import('../views/Atlassian.vue')
+    name: 'Atlassian',
+    component: Atlassian
   },
   {
     path: '*',
