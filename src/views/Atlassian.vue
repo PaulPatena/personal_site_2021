@@ -1,26 +1,31 @@
 <template>
   <fragment>
-    <span class="pop--error">Hello World</span>
+    <p class="pop--error">Hello World</p>
+    {{status}}
   </fragment>
 </template>
 
 <script>
 import { Fragment } from 'vue-fragment'
-//import {mapGetters, mapMutations} from 'vuex';
+// import {mapGetters, mapMutations, mapActions} from 'vuex';
+// import HelloWorld from "../components/HelloWorld.vue"
 
 export default {
-  name: '',
+  name: 'FIXME',
   data: () => ({
     status: "loading"
   }),
+  props: {
+    x: {type: Number, default: 0}
+  },
   computed: {
 
   },
   methods: {
 
   },
-  created: () => {
-    this.status = "successfully loaded"
+  created: function() {
+    this.status = "successfully loaded";
   },
   components: {
     Fragment
