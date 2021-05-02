@@ -6,7 +6,7 @@
       <div class="d-flex align-center">
         <v-img src="@/assets/pp-outline.png" transition="scale-transition" width="32" @click="$router.push({name: `Home`})" style="cursor: pointer;"/>
       </div>
-      
+
       <v-spacer></v-spacer>
 
       <v-btn icon title="contact Paul">
@@ -59,11 +59,11 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-      
+
       <v-divider></v-divider>
       <v-list-item nav dense @click="invertDarkMode()" title="switch between dark & light theme">
         <v-list-item-icon>
-          <v-icon>mdi-brightness-6</v-icon>  
+          <v-icon>mdi-brightness-6</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{getDarkMode ? 'Dark Mode': 'Light Mode'}}</v-list-item-title>
@@ -101,6 +101,7 @@ export default {
       { title: 'Home Proj Videos', icon: 'mdi-play-circle', routeName: "Videos" },
       { title: 'Home Proj Photos', icon: 'mdi-image', routeName: "Gallery" },
       { title: 'Home DIY', icon: 'mdi-hammer-screwdriver', routeName: "Diy" },
+      { title: 'Atlassian', icon: 'mdi-bug', routeName: "atlassian" },
     ],
     mini: true,
   }),

@@ -35,6 +35,11 @@ const routes = [
     component: MyCerts
   },
   {
+    path: '/atlassian',
+    name: 'atlassian',
+    component: () => import('../views/Atlassian.vue')
+  },
+  {
     path: '*',
     component: Home
   }
