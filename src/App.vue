@@ -9,6 +9,10 @@
 
       <v-spacer></v-spacer>
 
+      <v-btn icon @click="invertDarkMode()" title="switch between dark & light theme">
+        <v-icon>mdi-brightness-6</v-icon>
+      </v-btn>
+
       <v-btn icon title="contact Paul">
         <a href="mailto:paul@paulpatena.com" style="text-decoration: none; color: white">
             <v-icon>mdi-email</v-icon>
@@ -59,17 +63,6 @@
             </v-list-item>
           </v-list-item-group>
         </v-list>
-
-      <v-divider></v-divider>
-      <v-list-item nav dense @click="invertDarkMode()" title="switch between dark & light theme">
-        <v-list-item-icon>
-          <v-icon>mdi-brightness-6</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>{{getDarkMode ? 'Dark Mode': 'Light Mode'}}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-
     </v-navigation-drawer>
 
     <v-main :class="{'darkBackground': getDarkMode, 'lightBackground': !getDarkMode}">
