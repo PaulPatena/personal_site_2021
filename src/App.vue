@@ -61,6 +61,20 @@
                 <v-list-item-title>{{ item.title }}</v-list-item-title>
               </v-list-item-content>
             </v-list-item>
+
+            <v-divider/>
+            <a class="noTextDecoration"
+              href="https://www.paulpatena.com/public_images/Resume_PaulPatena.pdf" download>
+              <v-list-item>
+                <v-list-item-icon>
+                  <v-icon>mdi-file-download</v-icon>
+                </v-list-item-icon>
+
+                <v-list-item-content>
+                  <v-list-item-title>Pauls CV</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </a>
           </v-list-item-group>
         </v-list>
     </v-navigation-drawer>
@@ -124,6 +138,10 @@ export default {
 
 .lightBackground {
   background-color: #D3E6FF !important;
+}
+
+.noTextDecoration {
+  text-decoration: none;
 }
 
 </style>
